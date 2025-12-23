@@ -78,7 +78,7 @@ if __name__ == '__main__':
     parser.add_argument('--Prediction', type=str, default="CTC", help='(Locked) Prediction method')
     parser.add_argument('--num_fiducial', type=int, default=20, help='Number of fiducial points (only relevant for TPS if used)')
     parser.add_argument('--input_channel', type=int, default=1, help='Input channels for the model (1 for grayscale)')
-    parser.add_argument('--output_channel', type=int, default=512, help='Output channels from feature extractor')
+    parser.add_argument('--output_channel', type=int, default=32, help='Output channels from feature extractor')
     parser.add_argument('--hidden_size', type=int, default=256, help='Hidden size of LSTM layers')
 
     # Device Selection
