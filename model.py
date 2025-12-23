@@ -1,7 +1,7 @@
 from modules.feature_extraction import HRNet_FeatureExtractor
-from modules.sequence_modeling import BidirectionalLSTM, GRU, MDLSTM
+from modules.sequence_modeling import BidirectionalLSTM, GRU,LSTM ,MDLSTM
 from modules.prediction import Attention
-from modules.feature_extraction import DenseNet_FeatureExtractor
+from modules.feature_extraction import DenseNet_FeatureExtractor, ResNet_FeatureExtractor
 from modules.dropout_layer import dropout_layer
 import torch.nn as nn
 
@@ -20,6 +20,8 @@ class Model(nn.Module):
             self.FeatureExtraction = HRNet_FeatureExtractor(opt.input_channel, opt.output_channel)
         elif opt.FeatureExtraction == 'Densenet':
             self.FeatureExtraction = DenseNet_FeatureExtractor(opt.input_channel, opt.output_channel)
+        elif opt.FeatureExtraction == 'ResNet':
+            self.FeatureExtraction = ResNet_FeatureExtractor(opt.input_channel, opt.output_channel)
         else:
             raise Exception('No FeatureExtraction module specified')
         self.FeatureExtraction_output = opt.output_channel
@@ -35,7 +37,9 @@ class Model(nn.Module):
         self.dropout5 = dropout_layer(opt.device)
 
         """ Sequence modeling"""
-        if opt.SequenceModeling == 'DBiLSTM':
+        if opt.SequenceModeling == 'LSTM':
+            self.SequenceModeling = LSTM(self.FeatureExtraction_output, opt.hidden_size, opt.hidden_size)
+        elif opt.SequenceModeling == 'DBiLSTM':
             self.SequenceModeling = nn.Sequential(
                 BidirectionalLSTM(self.FeatureExtraction_output, opt.hidden_size, opt.hidden_size),
                 BidirectionalLSTM(opt.hidden_size, opt.hidden_size, opt.hidden_size))

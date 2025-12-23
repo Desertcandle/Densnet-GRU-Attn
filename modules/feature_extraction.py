@@ -1,6 +1,7 @@
 import torch.nn as nn
 from modules.cnn.hrnet import HRNet
 from modules.cnn.densnet import DenseNet
+from modules.cnn.resnet import ResNet
 
 class HRNet_FeatureExtractor(nn.Module):
     def __init__(self, input_channel=1, output_channel=32):
@@ -10,6 +11,13 @@ class HRNet_FeatureExtractor(nn.Module):
     def forward(self, input):
         return self.ConvNet(input)
 
+class ResNet_FeatureExtractor(nn.Module):
+    def __init__(self, input_channel=1, output_channel=512):
+        super(ResNet_FeatureExtractor, self).__init__()
+        self.ConvNet = ResNet(input_channel, output_channel)
+
+    def forward(self, input):
+        return self.ConvNet(input)
     
 class DenseNet_FeatureExtractor(nn.Module):
     def __init__(self, input_channel=1, output_channel=512):

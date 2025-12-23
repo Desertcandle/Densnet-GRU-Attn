@@ -2,7 +2,7 @@
 
 ORATOR is a deep learning–based neural network OCR tool built specifically for recognizing **Urdu & Arabic** scripts.
 It is built using a modern architecture: **Densnet** for feature extraction, **GRU** for sequence modeling, and **Attn** for transcription.
-
+Also include architecture: **Resnet** for feature extraction, **LSTM** for sequence modeling, and **CTC** for transcription.
 ---
 
 ## Requirements
