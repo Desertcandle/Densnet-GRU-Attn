@@ -205,7 +205,7 @@ if __name__ == '__main__':
     torch.backends.cudnn.benchmark = False
 
     """ vocab / character number configuration """
-    file = open("UrduGlyphs.txt","r",encoding="utf-8")
+    file = open("Glyphs.txt","r",encoding="utf-8")
     content = file.readlines()
     content = ''.join([str(elem).strip('\n') for elem in content])
     opt.character = content+" "

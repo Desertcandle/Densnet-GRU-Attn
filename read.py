@@ -91,7 +91,7 @@ if __name__ == '__main__':
         opt.output_channel = 32
 
     # Load character set
-    with open("UrduGlyphs.txt", "r", encoding="utf-8") as file:
+    with open("Glyphs.txt", "r", encoding="utf-8") as file:
         opt.character = ''.join([line.strip() for line in file.readlines()]) + " "
 
     # Device Setup
